@@ -1,0 +1,1329 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NINJAGO - Caminho do Ninja</title>
+
+    <style>
+
+        /* =====================================================
+           CONFIGURAÇÕES GERAIS
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #08090d;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(255, 40, 30, 0.15),
+                    transparent 40%
+                );
+
+            pointer-events: none;
+            z-index: -1;
+        }
+
+
+        /* =====================================================
+           MENU
+        ===================================================== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            z-index: 1000;
+
+            background: rgba(5, 6, 10, 0.95);
+
+            border-bottom: 3px solid #d8a928;
+
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            max-width: 1150px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 16px 25px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #e51c23;
+        }
+
+        nav ul {
+            list-style: none;
+
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #e5b52f;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 140px 20px 80px;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.55),
+                    rgba(0,0,0,0.85)
+                ),
+                radial-gradient(
+                    circle at center,
+                    #a31619 0%,
+                    #4b0c11 40%,
+                    #08090d 80%
+                );
+
+            overflow: hidden;
+        }
+
+        /* Círculos decorativos */
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            border: 3px solid rgba(229,181,47,0.12);
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 40px rgba(229,181,47,0.03),
+                0 0 0 80px rgba(229,181,47,0.02);
+
+            animation: girar 30s linear infinite;
+        }
+
+        @keyframes girar {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 850px;
+        }
+
+
+        /* Ninja */
+
+        .ninja-icon {
+            font-size: 100px;
+
+            margin-bottom: 20px;
+
+            animation:
+                ninjaFlutuar 3s ease-in-out infinite;
+        }
+
+        @keyframes ninjaFlutuar {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+
+        .hero h1 {
+            font-size: clamp(50px, 9vw, 100px);
+
+            font-weight: 900;
+
+            letter-spacing: 4px;
+
+            color: #ffffff;
+
+            text-shadow:
+                5px 5px 0 #111111,
+                8px 8px 0 #b51218;
+        }
+
+        .hero h2 {
+            margin-top: 10px;
+
+            font-size: clamp(20px, 4vw, 32px);
+
+            color: #e5b52f;
+
+            text-transform: uppercase;
+
+            letter-spacing: 5px;
+        }
+
+        .hero p {
+            max-width: 650px;
+
+            margin: 25px auto 35px;
+
+            color: #dddddd;
+
+            font-size: 19px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           BOTÕES
+        ===================================================== */
+
+        .botao {
+            display: inline-block;
+
+            padding: 16px 34px;
+
+            background: #e51c23;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-weight: 900;
+
+            border: 3px solid #ffffff;
+
+            border-radius: 5px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            box-shadow:
+                5px 5px 0 #790b10;
+
+            transition: 0.2s;
+
+            cursor: pointer;
+        }
+
+        .botao:hover {
+            transform: translate(3px, 3px);
+
+            box-shadow:
+                2px 2px 0 #790b10;
+
+            background: #ff252c;
+        }
+
+
+        /* =====================================================
+           SEÇÕES
+        ===================================================== */
+
+        section {
+            padding: 100px 20px;
+        }
+
+        .container {
+            max-width: 1150px;
+
+            margin: auto;
+        }
+
+        .titulo {
+            text-align: center;
+
+            margin-bottom: 60px;
+        }
+
+        .titulo h2 {
+            font-size: 46px;
+
+            color: #e5b52f;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                3px 3px 0 #5c4510;
+        }
+
+        .titulo p {
+            margin-top: 12px;
+
+            color: #aaa;
+
+            font-size: 17px;
+        }
+
+
+        /* =====================================================
+           DOJO
+        ===================================================== */
+
+        .dojo {
+            background:
+                linear-gradient(
+                    135deg,
+                    #11131b,
+                    #07080c
+                );
+        }
+
+        .dojo-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 45px;
+
+            align-items: center;
+        }
+
+        .dojo-text h3 {
+            font-size: 32px;
+
+            color: #e51c23;
+
+            margin-bottom: 20px;
+        }
+
+        .dojo-text p {
+            color: #cccccc;
+
+            line-height: 1.8;
+
+            margin-bottom: 16px;
+        }
+
+        .dojo-image {
+            min-height: 350px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            font-size: 130px;
+
+            border: 3px solid #d8a928;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #4b1114,
+                    #0a0b10 70%
+                );
+
+            border-radius: 10px;
+
+            box-shadow:
+                inset 0 0 70px rgba(0,0,0,.7),
+                10px 10px 0 rgba(216,169,40,.15);
+        }
+
+
+        /* =====================================================
+           NINJAS
+        ===================================================== */
+
+        .ninjas {
+            background: #050609;
+        }
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .card {
+            padding: 35px 25px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #191b24,
+                    #0b0c11
+                );
+
+            border: 2px solid #292c36;
+
+            border-radius: 8px;
+
+            transition: 0.3s;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 5px;
+
+            background: #e51c23;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+
+            border-color: #e5b52f;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.5);
+        }
+
+        .ninja-icon-card {
+            font-size: 65px;
+
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #e5b52f;
+
+            font-size: 25px;
+
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #aaa;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           ELEMENTOS
+        ===================================================== */
+
+        .elementos {
+            background:
+                linear-gradient(
+                    #13080a,
+                    #08090d
+                );
+        }
+
+        .element-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 18px;
+        }
+
+        .elemento {
+            min-height: 190px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            background: #11131a;
+
+            border: 2px solid #30323a;
+
+            border-radius: 8px;
+
+            transition: 0.3s;
+        }
+
+        .elemento:hover {
+            transform: scale(1.05);
+
+            border-color: #e5b52f;
+        }
+
+        .elemento-icon {
+            font-size: 55px;
+        }
+
+        .elemento h3 {
+            color: #ffffff;
+        }
+
+        .fogo {
+            border-bottom: 5px solid #e51c23;
+        }
+
+        .gelo {
+            border-bottom: 5px solid #48a9e8;
+        }
+
+        .raio {
+            border-bottom: 5px solid #f1d33b;
+        }
+
+        .terra {
+            border-bottom: 5px solid #8a633b;
+        }
+
+        .energia {
+            border-bottom: 5px solid #67e35f;
+        }
+
+
+        /* =====================================================
+           TREINAMENTO
+        ===================================================== */
+
+        .treinamento {
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #6d1117,
+                    #09090d 70%
+                );
+        }
+
+        .treino-box {
+            max-width: 700px;
+
+            margin: auto;
+
+            padding: 40px;
+
+            background: rgba(0,0,0,.5);
+
+            border: 2px solid #e5b52f;
+
+            border-radius: 10px;
+        }
+
+        .nivel {
+            font-size: 20px;
+
+            color: #aaa;
+
+            margin-bottom: 10px;
+        }
+
+        .xp {
+            font-size: 60px;
+
+            font-weight: 900;
+
+            color: #e5b52f;
+
+            margin-bottom: 20px;
+        }
+
+        .barra {
+            height: 25px;
+
+            background: #08090c;
+
+            border: 2px solid #444;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            margin-bottom: 30px;
+        }
+
+        .progresso {
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #e51c23,
+                    #e5b52f
+                );
+
+            transition: width .4s;
+        }
+
+
+        /* =====================================================
+           FRASE
+        ===================================================== */
+
+        .sabedoria {
+            text-align: center;
+
+            background: #050609;
+
+            border-top: 2px solid #b08b24;
+            border-bottom: 2px solid #b08b24;
+        }
+
+        .sabedoria h2 {
+            color: #e5b52f;
+
+            font-size: 18px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 25px;
+        }
+
+        .sabedoria blockquote {
+            max-width: 850px;
+
+            margin: auto;
+
+            font-size: clamp(26px, 5vw, 45px);
+
+            font-weight: bold;
+
+            line-height: 1.4;
+
+            color: #ffffff;
+        }
+
+        .sabedoria span {
+            display: block;
+
+            margin-top: 25px;
+
+            color: #888;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            text-align: center;
+
+            padding: 40px 20px;
+
+            background: #030406;
+
+            color: #777;
+
+            border-top: 1px solid #222;
+        }
+
+        footer strong {
+            color: #e5b52f;
+        }
+
+
+        /* =====================================================
+           RESPONSIVO
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            nav {
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+            .hero {
+                padding-top: 180px;
+            }
+
+            .dojo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .element-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            .logo {
+                font-size: 18px;
+            }
+
+            nav ul {
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .hero h2 {
+                font-size: 18px;
+
+                letter-spacing: 3px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .element-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .treino-box {
+                padding: 25px 15px;
+            }
+
+            .xp {
+                font-size: 45px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         MENU
+    ===================================================== -->
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+                NINJA<span>GO</span>
+            </div>
+
+            <ul>
+
+                <li>
+                    <a href="#inicio">Início</a>
+                </li>
+
+                <li>
+                    <a href="#dojo">Dojo</a>
+                </li>
+
+                <li>
+                    <a href="#ninjas">Ninjas</a>
+                </li>
+
+                <li>
+                    <a href="#elementos">Elementos</a>
+                </li>
+
+                <li>
+                    <a href="#treinamento">Treino</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <section class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <div class="ninja-icon">
+                🥷
+            </div>
+
+            <h1>NINJAGO</h1>
+
+            <h2>O caminho do ninja</h2>
+
+            <p>
+                Entre no mundo dos ninjas, descubra seu elemento,
+                treine suas habilidades e encontre o caminho
+                para se tornar um verdadeiro mestre.
+            </p>
+
+            <a
+                href="#treinamento"
+                class="botao">
+
+                Começar treinamento
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         DOJO
+    ===================================================== -->
+
+    <section class="dojo" id="dojo">
+
+        <div class="container">
+
+            <div class="titulo">
+
+                <h2>O Dojo</h2>
+
+                <p>
+                    Todo ninja precisa começar seu treinamento
+                    em algum lugar.
+                </p>
+
+            </div>
+
+
+            <div class="dojo-grid">
+
+
+                <div class="dojo-text">
+
+                    <h3>Treine como um ninja</h3>
+
+                    <p>
+                        O caminho ninja exige disciplina,
+                        coragem, trabalho em equipe e
+                        determinação.
+                    </p>
+
+                    <p>
+                        No dojo, os aprendizes treinam seus
+                        corpos e suas mentes para dominar
+                        seus poderes elementais.
+                    </p>
+
+                    <p>
+                        Um verdadeiro ninja não luta apenas
+                        para vencer. Ele luta para proteger
+                        aqueles que não conseguem se proteger.
+                    </p>
+
+                </div>
+
+
+                <div class="dojo-image">
+
+                    🏯
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         NINJAS
+    ===================================================== -->
+
+    <section class="ninjas" id="ninjas">
+
+        <div class="container">
+
+            <div class="titulo">
+
+                <h2>Os Ninjas</h2>
+
+                <p>
+                    Cada ninja possui habilidades e
+                    características únicas.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <div class="ninja-icon-card">
+                        🔥
+                    </div>
+
+                    <h3>Kai</h3>
+
+                    <p>
+                        Um ninja determinado, corajoso e
+                        ligado ao elemento fogo.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="ninja-icon-card">
+                        ❄️
+                    </div>
+
+                    <h3>Zane</h3>
+
+                    <p>
+                        Inteligência, precisão e domínio
+                        do elemento gelo.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="ninja-icon-card">
+                        ⚡
+                    </div>
+
+                    <h3>Jay</h3>
+
+                    <p>
+                        Um ninja rápido e criativo que
+                        domina o poder do raio.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="ninja-icon-card">
+                        🪨
+                    </div>
+
+                    <h3>Cole</h3>
+
+                    <p>
+                        Forte e resistente, utilizando
+                        o poder da terra.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="ninja-icon-card">
+                        🐉
+                    </div>
+
+                    <h3>Lloyd</h3>
+
+                    <p>
+                        Um dos principais guerreiros,
+                        ligado ao poder da energia.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="ninja-icon-card">
+                        🐲
+                    </div>
+
+                    <h3>Dragões</h3>
+
+                    <p>
+                        Criaturas lendárias que representam
+                        forças elementais.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ELEMENTOS
+    ===================================================== -->
+
+    <section class="elementos" id="elementos">
+
+        <div class="container">
+
+            <div class="titulo">
+
+                <h2>Elementos</h2>
+
+                <p>
+                    Descubra qual poder combina com seu
+                    estilo de ninja.
+                </p>
+
+            </div>
+
+
+            <div class="element-grid">
+
+
+                <div class="elemento fogo">
+
+                    <div class="elemento-icon">
+                        🔥
+                    </div>
+
+                    <h3>Fogo</h3>
+
+                </div>
+
+
+                <div class="elemento gelo">
+
+                    <div class="elemento-icon">
+                        ❄️
+                    </div>
+
+                    <h3>Gelo</h3>
+
+                </div>
+
+
+                <div class="elemento raio">
+
+                    <div class="elemento-icon">
+                        ⚡
+                    </div>
+
+                    <h3>Raio</h3>
+
+                </div>
+
+
+                <div class="elemento terra">
+
+                    <div class="elemento-icon">
+                        🪨
+                    </div>
+
+                    <h3>Terra</h3>
+
+                </div>
+
+
+                <div class="elemento energia">
+
+                    <div class="elemento-icon">
+                        🟢
+                    </div>
+
+                    <h3>Energia</h3>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TREINAMENTO
+    ===================================================== -->
+
+    <section class="treinamento" id="treinamento">
+
+        <div class="container">
+
+            <div class="titulo">
+
+                <h2>Treinamento Ninja</h2>
+
+                <p>
+                    Clique para treinar e aumentar sua experiência.
+                </p>
+
+            </div>
+
+
+            <div class="treino-box">
+
+                <div class="nivel">
+                    EXPERIÊNCIA NINJA
+                </div>
+
+                <div class="xp">
+
+                    <span id="xp">
+                        0
+                    </span>
+
+                    XP
+
+                </div>
+
+
+                <div class="barra">
+
+                    <div
+                        class="progresso"
+                        id="progresso">
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="botao"
+                    onclick="treinar()">
+
+                    🥷 TREINAR
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SABEDORIA
+    ===================================================== -->
+
+    <section class="sabedoria">
+
+        <div class="container">
+
+            <h2>
+                Sabedoria Ninja
+            </h2>
+
+            <blockquote>
+
+                "Um verdadeiro ninja não precisa
+                ser o mais forte. Precisa continuar
+                quando todos os outros desistem."
+
+            </blockquote>
+
+            <span>
+                O caminho continua...
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <p>
+            <strong>NINJAGO</strong>
+            • Caminho do Ninja
+        </p>
+
+        <p style="margin-top: 10px;">
+            Projeto inspirado no universo de ninjas,
+            dragões e artes marciais.
+        </p>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        let xp = 0;
+
+
+        const xpElemento =
+            document.getElementById("xp");
+
+        const progresso =
+            document.getElementById("progresso");
+
+
+        function treinar() {
+
+            const ganho =
+                Math.floor(Math.random() * 15) + 5;
+
+            xp += ganho;
+
+
+            if (xp >= 100) {
+
+                xp = 100;
+
+                xpElemento.textContent = xp;
+
+                progresso.style.width =
+                    xp + "%";
+
+
+                setTimeout(() => {
+
+                    alert(
+                        "Nível completo! Você está ficando mais forte, ninja."
+                    );
+
+                    xp = 0;
+
+                    xpElemento.textContent =
+                        xp;
+
+                    progresso.style.width =
+                        "0%";
+
+                }, 200);
+
+                return;
+            }
+
+
+            xpElemento.textContent =
+                xp;
+
+            progresso.style.width =
+                xp + "%";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+```
